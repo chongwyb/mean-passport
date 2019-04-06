@@ -50,14 +50,7 @@ export class BookComponent implements OnInit {
     }
     this.bookService.createBook(book).subscribe(data =>{
       console.log((data as any).msg);
-      this.bookService.getBookList().subscribe(data => {
-        this.books = data;
-        console.log(this.books);
-      }, err => {
-        if(err.status === 401) {
-          this.router.navigate(['login']);
-        }
-      });
+      this.books.push((data as any).book);
     })
   }
 }

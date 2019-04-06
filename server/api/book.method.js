@@ -15,11 +15,13 @@ let update_book = function (req, res) {
             publisher: req.body.publisher
         });
 
-        newBook.save(function (err) {
+        newBook.save(function (err, doc) {
             if (err) {
                 return res.json({ success: false, msg: 'Save book failed.' });
             }
-            res.json({ success: true, msg: 'Successful created new book.' });
+            console.log('book update method', doc);
+            // can return single updated doc and add into list on client
+            res.json({ success: true, msg: 'Successful created new book.', book: doc });
         });
     } else {
         return res.status(403).send({ success: false, msg: 'Unauthorized.' });

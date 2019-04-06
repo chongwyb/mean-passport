@@ -24,4 +24,10 @@ var BookSchema = new Schema({
   }
 });
 
+BookSchema.post('save', function(doc, next) {
+  // document id is updated
+  // console.log('book post save', doc);
+  return next()
+})
+
 module.exports = mongoose.model('Book', BookSchema);
