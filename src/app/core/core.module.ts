@@ -1,9 +1,8 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { BookService } from '../book/book.service';
 
 @NgModule({
   providers: [
-    BookService,
+
   ],
 })
 export class CoreModule {

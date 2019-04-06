@@ -1,13 +1,15 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from "@angular/core";
-import { AuthRoutingModule } from './auth-routing.module';
-import { AuthService } from './auth.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         AuthRoutingModule,
     ],
     declarations: [

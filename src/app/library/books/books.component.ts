@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { BookService } from './book.service';
+import { LibraryService } from '../library.service';
 
 @Component({
-  selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  selector: 'app-books',
+  templateUrl: './books.component.html',
+  styleUrls: ['./books.component.scss']
 })
-export class BookComponent implements OnInit {
+export class BooksComponent implements OnInit {
   books: any;
 
   constructor(
     private router: Router,
-    private bookService: BookService,
+    private libraryService: LibraryService,
   ) { }
 
   ngOnInit() {
-    this.bookService.getBookList().subscribe(data => {
+    this.libraryService.getBookList().subscribe(data => {
       this.books = data;
       console.log(this.books);
     }, err => {
@@ -39,7 +39,7 @@ export class BookComponent implements OnInit {
       author: "me",
       publisher: "you",
     }
-    this.bookService.createBook(book).subscribe(data =>{
+    this.libraryService.createBook(book).subscribe(data =>{
       console.log((data as any).msg);
       this.books.push((data as any).book);
     })

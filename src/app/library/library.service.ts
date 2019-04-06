@@ -9,7 +9,7 @@ import { tap, catchError } from 'rxjs/operators';
  */
 
 @Injectable()
-export class BookService {
+export class LibraryService {
 
     constructor(
         private http: HttpClient,
