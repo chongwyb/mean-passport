@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,21 +8,21 @@ import { Router } from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginData = { username: "", password: ""};
+  loginData = { username: "", password: "" };
   message = "";
   data: any;
 
   constructor(
-    private http: HttpClient,
     private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
-    
+
   }
 
   login() {
-    this.http.post('/api/signin',this.loginData).subscribe(resp => {
+    this.authService.login(this.loginData).subscribe(resp => {
       this.data = resp;
       localStorage.setItem('jwtToken', this.data.token);
       localStorage.setItem('user_id', this.data.user_id);

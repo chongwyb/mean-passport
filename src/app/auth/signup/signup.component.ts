@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
-import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,15 +12,15 @@ export class SignupComponent implements OnInit {
   message = "";
 
   constructor(
-    private http: HttpClient,
     private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
   }
 
   signup() {
-    this.http.post('/api/signup', this.signupData).subscribe(resp => {
+    this.authService.signup(this.signupData).subscribe(resp => {
       console.log(resp);
       this.router.navigate(['login']);
     }, err => {

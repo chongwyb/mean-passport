@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from "@angular/router";
-import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
 import { BookService } from './book.service';
 
 @Component({
@@ -12,14 +9,8 @@ import { BookService } from './book.service';
 })
 export class BookComponent implements OnInit {
   books: any;
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Authorization': localStorage.getItem('jwtToken'),
-      'user_id': localStorage.getItem('user_id'),
-    })
-  };
+
   constructor(
-    private http: HttpClient,
     private router: Router,
     private bookService: BookService,
   ) { }
