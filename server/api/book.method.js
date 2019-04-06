@@ -1,12 +1,14 @@
 var passport = require('passport');
-require('../../config/passport')(passport);
-var Book = require("../../models/book.model");
+require('../config/passport.config')(passport);
+var Book = require("../models/book.model");
 
 let update_book = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         console.log(req.body);
+        // console.log(req.headers.user_id);
         var newBook = new Book({
+            user_id: req.headers.user_id,
             isbn: req.body.isbn,
             title: req.body.title,
             author: req.body.author,
@@ -27,7 +29,8 @@ let update_book = function (req, res) {
 let get_book = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
-        Book.find(function (err, books) {
+        // console.log("booklist u_id",req.headers.user_id)
+        Book.find({user_id: req.headers.user_id},function (err, books) {
             if (err) return next(err);
             res.json(books);
         });

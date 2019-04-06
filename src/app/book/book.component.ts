@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from "@angular/router";
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { BookService } from './book.service';
 
 @Component({
   selector: 'app-book',
@@ -11,17 +12,20 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class BookComponent implements OnInit {
   books: any;
-
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': localStorage.getItem('jwtToken'),
+      'user_id': localStorage.getItem('user_id'),
+    })
+  };
   constructor(
     private http: HttpClient,
     private router: Router,
+    private bookService: BookService,
   ) { }
 
   ngOnInit() {
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })
-    };
-    this.http.get('/api/book', httpOptions).subscribe(data => {
+    this.bookService.getBookList().subscribe(data => {
       this.books = data;
       console.log(this.books);
     }, err => {
@@ -33,6 +37,27 @@ export class BookComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('jwtToken');
+    localStorage.removeItem('user_id');
     this.router.navigate(['login']);
+  }
+
+  create() {
+    let book = {
+      isbn: "1",
+      title: "testbook",
+      author: "me",
+      publisher: "you",
+    }
+    this.bookService.createBook(book).subscribe(data =>{
+      console.log((data as any).msg);
+      this.bookService.getBookList().subscribe(data => {
+        this.books = data;
+        console.log(this.books);
+      }, err => {
+        if(err.status === 401) {
+          this.router.navigate(['login']);
+        }
+      });
+    })
   }
 }

@@ -1,8 +1,8 @@
 var passport = require('passport');
-var config = require('../../config/database');
-require('../../config/passport')(passport);
+var config = require('../config/database.config');
+require('../config/passport.config')(passport);
 var jwt = require('jsonwebtoken');
-var User = require("../../models/user");
+var User = require("../models/user.model");
 
 let signup = function(req, res) {
     if (!req.body.username || !req.body.password) {
@@ -37,7 +37,7 @@ let signin = function (req, res) {
                     // if user is found and password is right create a token
                     var token = jwt.sign(user.toJSON(), config.secret);
                     // return the information including token as JSON
-                    res.json({ success: true, token: 'JWT ' + token });
+                    res.json({ success: true, token: 'JWT ' + token, user_id: user._id });
                 } else {
                     res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
                 }
