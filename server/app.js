@@ -1,5 +1,5 @@
 var express = require('express');
-// var path = require('path');
+var path = require('path');
 // var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
@@ -23,10 +23,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));
 app.use('/api', api);
 
+/**
+ * Tell express where to serve static files
+ * When express catches any route, it returns index.html then handled by angular routing
+ * Production - deloying entire app by 'npm start'
+ * Development - deploy the client and server separately
+ * Uncomment the section below for production
+ */
 /*
-// Might use for server side rendering?
-app.use(express.static(path.join(__dirname, 'dist/mean-secure')));
-app.use('/login', express.static(path.join(__dirname, 'dist/mean-secure')));
+// express.static is a built in middleware function to serve static files pointed to dist/<app-name>
+app.use(express.static(path.join(__dirname, '../dist/mean-secure')));
+
+// Catch all other routes and return the index file
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/mean-secure/index.html'));
+});
 */
 
 // catch 404 and forward to error handler
