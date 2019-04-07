@@ -13,6 +13,7 @@ export class BooksComponent implements OnInit {
   constructor(
     private router: Router,
     private libraryService: LibraryService,
+    
   ) { }
 
   ngOnInit() {
@@ -39,4 +40,5 @@ export class BooksComponent implements OnInit {
   editBook(id) {
     this.router.navigate(["book", id, "edit"])
   }
+
 }

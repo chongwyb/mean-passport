@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LibraryService } from '../library.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-book-detail',
@@ -24,6 +25,7 @@ export class BookDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private libraryService: LibraryService,
+    private location: Location,
   ) { }
 
   ngOnInit() {
@@ -54,5 +56,9 @@ export class BookDetailComponent implements OnInit {
       console.log((data as any).msg);
       this.router.navigate(['books']);
     })
+  }
+
+  back() {
+    this.location.back();
   }
 }
