@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var BookSchema = new Schema({
-  user_id: {
+  userId: {
     type: String,
     required: true
   },

@@ -22,7 +22,7 @@ export class LibraryService {
                 'user_id': localStorage.getItem('user_id'),
             })
         };
-        return this.http.get('/api/book', httpOptions);
+        return this.http.get('/api/books', httpOptions);
     }
 
     createBook(book) {
@@ -33,5 +33,26 @@ export class LibraryService {
             })
         };
         return this.http.post('/api/book', book, httpOptions);
+    }
+
+    updateBook(book) {
+        let httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': localStorage.getItem('jwtToken'),
+                'user_id': localStorage.getItem('user_id'),
+            })
+        };
+        return this.http.put('/api/book', book, httpOptions);
+    }
+
+    getBook(id) {
+        let httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': localStorage.getItem('jwtToken'),
+                'user_id': localStorage.getItem('user_id'),
+            }),
+            params: {id: id},
+        };
+        return this.http.get('/api/book', httpOptions);
     }
 }

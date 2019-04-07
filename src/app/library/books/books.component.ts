@@ -20,7 +20,7 @@ export class BooksComponent implements OnInit {
       this.books = data;
       console.log(this.books);
     }, err => {
-      if(err.status === 401) {
+      if (err.status === 401) {
         this.router.navigate(['login']);
       }
     });
@@ -34,5 +34,9 @@ export class BooksComponent implements OnInit {
 
   create() {
     this.router.navigate(["book/new"]);
+  }
+
+  editBook(id) {
+    this.router.navigate(["book", id, "edit"])
   }
 }
