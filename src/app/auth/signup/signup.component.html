@@ -1,14 +1,27 @@
 <div class="container">
-  <form class="form-signin" (ngSubmit)="signup()" #signupForm="ngForm">
-      <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="message !== ''">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{message}}
-      </div>
-      <h2 class="form-signin-heading">Sign Up Now</h2>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" class="form-control" placeholder="Email address" [(ngModel)]="signupData.username" name="username" required/>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="signupData.password" name="password" required/>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!signupForm.form.valid">Sign Up</button>
+  <form [formGroup]="signupForm" class="example-form" (ngSubmit)="signup()">
+    <h2 class="">Sign Up Now</h2>
+    <mat-form-field class="example-full-width">
+      <input matInput type="email" placeholder="Email address" formControlName="username" name="username" />
+      <mat-error *ngIf="signupForm.controls.username.errors?.required">
+        Field <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput type="password" placeholder="Password" formControlName="password" name="password" />
+      <mat-error *ngIf="signupForm.controls.password.errors?.required">
+        Field <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button type="submit" [disabled]="!signupForm.valid">Sign Up</button>
+    </div>
+    <div *ngIf="message !== ''">
+      {{message}}
+    </div>
+    <hr>
+    <p>
+      Already a member? <a [routerLink]="['/login']">Login here</a>
+    </p>
   </form>
 </div>

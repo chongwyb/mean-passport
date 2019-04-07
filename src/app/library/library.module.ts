@@ -1,6 +1,4 @@
 import { NgModule, SkipSelf, Optional } from "@angular/core";
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { LibraryRoutingModule } from './library-routing.module';
 import { BooksComponent } from './books/books.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
@@ -9,7 +7,6 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     imports: [
-        CommonModule,
         LibraryRoutingModule,
         SharedModule,
     ],
