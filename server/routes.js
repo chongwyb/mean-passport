@@ -12,6 +12,6 @@ router.post('/signin', user_methods.signin);
 
 router.post('/book', passport.authenticate('jwt', { session: false }), book_methods.update_book);
 
-router.get('/book', passport.authenticate('jwt', { session: false }), book_methods.get_book);
+router.get('/book', passport.authenticate('jwt', { session: false }), book_methods.get_books);
 
 module.exports = router;

@@ -1,3 +1,35 @@
-<p>
-  book-detail works!
-</p>
+<form [formGroup]="bookForm" (ngSubmit)="create()">
+  <h2 class="">Book</h2>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="ISBN" formControlName="isbn" />
+    <mat-error *ngIf="bookForm.controls.isbn.errors?.required">
+      Field <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Title" formControlName="title" />
+    <mat-error *ngIf="bookForm.controls.title.errors?.required">
+      Field <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Author" formControlName="author" />
+    <mat-error *ngIf="bookForm.controls.author.errors?.required">
+      Field <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Publisher" formControlName="publisher" />
+    <mat-error *ngIf="bookForm.controls.publisher.errors?.required">
+      Field <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button type="submit" [disabled]="!bookForm.valid">Create</button>
+  </div>
+</form>

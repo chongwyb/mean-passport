@@ -28,7 +28,7 @@ let update_book = function (req, res) {
     }
 }
 
-let get_book = function (req, res) {
+let get_books = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         // console.log("booklist u_id",req.headers.user_id)
@@ -56,5 +56,5 @@ getToken = function (headers) {
 
 module.exports = {
     update_book: update_book,
-    get_book: get_book,
+    get_books: get_books,
 }

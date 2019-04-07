@@ -33,15 +33,6 @@ export class BooksComponent implements OnInit {
   }
 
   create() {
-    let book = {
-      isbn: "1",
-      title: "testbook",
-      author: "me",
-      publisher: "you",
-    }
-    this.libraryService.createBook(book).subscribe(data =>{
-      console.log((data as any).msg);
-      this.books.push((data as any).book);
-    })
+    this.router.navigate(["book/new"]);
   }
 }

@@ -3,7 +3,7 @@
     <h2 class="">Please sign in</h2>
 
     <mat-form-field class="example-full-width">
-      <input matInput type="email" class="form-control" placeholder="Email address" formControlName="username"
+      <input matInput type="email" placeholder="Email address" formControlName="username"
         name="username" />
         <mat-error *ngIf="loginForm.controls.password.errors?.required">
             Field <strong>required</strong>
@@ -11,7 +11,7 @@
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <input matInput type="password" class="form-control" placeholder="Password" formControlName="password"
+      <input matInput type="password" placeholder="Password" formControlName="password"
         name="password" />
         <mat-error *ngIf="loginForm.controls.password.errors?.required">
             Field <strong>required</strong>
