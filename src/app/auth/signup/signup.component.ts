@@ -10,12 +10,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   signupForm = this.formBuilder.group({
-    username: ["", {
+    username: ["admin@library.com", {
       validators: [Validators.required],
       asyncValidators: [],
       updateOn: "change",
     }],
-    password: ["", {
+    password: ["123456", {
       validators: [Validators.required],
     }]
   });

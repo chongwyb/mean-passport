@@ -10,10 +10,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm = this.formBuilder.group({
-    username: ["", {
+    username: ["admin@library.com", {
       validators: [Validators.required],
     }],
-    password: ["", {
+    password: ["123456", {
       validators: [Validators.required],
     }]
   });

@@ -32,7 +32,7 @@ let get_books = function (req, res) {
     var token = getToken(req.headers);
     if (token) {
         // console.log("booklist u_id",req.headers.user_id)
-        Book.find({ user_id: req.headers.user_id }, function (err, books) {
+        Book.find({ userId: req.headers.user_id }, function (err, books) {
             if (err) return next(err);
             res.json(books);
         });

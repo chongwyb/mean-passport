@@ -4,17 +4,23 @@ var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 // var morgan = require('morgan');
+var cors = require('cors')
 var mongoose = require('mongoose');
 var passport = require('passport');
 var config = require('./config/database.config');
+var seed = require('./seed');
 
 var api = require('./routes');
 var app = express();
 
+app.use(cors());
+
 mongoose.Promise = require('bluebird');
 mongoose.connect(config.database, { promiseLibrary: require('bluebird') })
-    .then(() => console.log('connection succesful'))
+    .then(() => console.log('connection successful'))
     .catch((err) => console.error(err));
+
+seed();
 
 app.use(passport.initialize());
 

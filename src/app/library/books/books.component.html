@@ -1,7 +1,21 @@
 <div class="container">
   <h1>Book List <button class="btn btn-success" (click)="logout()">Logout</button></h1>
   <button type="button" (click)="create()">Create A Book</button>
-  <table class="table">
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let book of books">
+      <mat-icon mat-list-icon>book</mat-icon>
+      <h4 mat-line>{{book.title}}</h4>
+      <p mat-line> {{book.author}} </p>
+      <div mat-line-end>
+        <div> {{book.isbn}} </div>
+        <div> {{book.publisher}} </div>
+      </div>
+      <button mat-icon-button (click)="editBook(book._id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+  <!-- <table class="table">
     <thead>
       <tr>
         <th>id</th>
@@ -22,5 +36,5 @@
         <td><button (click)="editBook(book._id)">Edit</button></td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
 </div>
