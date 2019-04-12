@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { LibraryModule } from './library/library.module';
+import { SharedModule } from './shared/shared.module';
+import { ErrorModule } from './error/error.module';
 
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
     AuthModule,
     LibraryModule,
     SharedModule,
+    ErrorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
