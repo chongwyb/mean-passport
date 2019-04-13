@@ -34,8 +34,10 @@ let signin = function (req, res) {
             // check if password matches
             user.comparePassword(req.body.password, function (err, isMatch) {
                 if (isMatch && !err) {
+                    let nonSensitiveFields = user.toJSON();
+                    delete nonSensitiveFields.password;
                     // if user is found and password is right create a token
-                    var token = jwt.sign(user.toJSON(), config.secret);
+                    var token = jwt.sign(nonSensitiveFields, config.secret);
                     // return the information including token as JSON
                     res.json({ success: true, token: 'JWT ' + token, user_id: user._id });
                 } else {
