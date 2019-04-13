@@ -1,9 +1,10 @@
+let genUtils = require('../utils/general.utils');
 var passport = require('passport');
 require('../config/passport.config')(passport);
 var Book = require("../models/book.model");
 
 let create_book = function (req, res) {
-    var token = getToken(req.headers);
+    var token = genUtils.getToken(req.headers);
     if (token) {
         console.log(req.body);
         // console.log(req.headers.user_id);
@@ -29,7 +30,7 @@ let create_book = function (req, res) {
 }
 
 let get_books = function (req, res) {
-    var token = getToken(req.headers);
+    var token = genUtils.getToken(req.headers);
     if (token) {
         // console.log("booklist u_id",req.headers.user_id)
         Book.find({ userId: req.headers.user_id }, function (err, books) {
@@ -42,7 +43,7 @@ let get_books = function (req, res) {
 }
 
 let get_book = function (req, res) {
-    var token = getToken(req.headers);
+    var token = genUtils.getToken(req.headers);
     if (token) {
         // console.log("booklist u_id",req.headers.user_id)
         console.log(req.query)
@@ -56,7 +57,7 @@ let get_book = function (req, res) {
 }
 
 let update_book = function (req, res) {
-    var token = getToken(req.headers);
+    var token = genUtils.getToken(req.headers);
     if (token) {
         console.log(req.body);
         Book.findOneAndUpdate({
@@ -80,19 +81,6 @@ let update_book = function (req, res) {
         return res.status(403).send({ success: false, msg: 'Unauthorized.' });
     }
 }
-
-getToken = function (headers) {
-    if (headers && headers.authorization) {
-        var parted = headers.authorization.split(' ');
-        if (parted.length === 2) {
-            return parted[1];
-        } else {
-            return null;
-        }
-    } else {
-        return null;
-    }
-};
 
 module.exports = {
     get_book: get_book,
